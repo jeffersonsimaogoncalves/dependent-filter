@@ -2,11 +2,11 @@
 
 namespace AwesomeNova;
 
-use Laravel\Nova\Nova;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
-use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Nova\Events\ServingNova;
+use Laravel\Nova\Nova;
+use Laravel\Nova\Script;
 
 class DependentFilterServiceProvider extends ServiceProvider
 {
@@ -24,11 +24,11 @@ class DependentFilterServiceProvider extends ServiceProvider
         });
 
         $this->publishes([
-            __DIR__.'/../dist' => public_path('vendor/jeffersonsimaogoncalves/dependent-filter'),
+            __DIR__ . '/../dist' => public_path('vendor/jeffersonsimaogoncalves/dependent-filter'),
         ], ['nova-assets', 'laravel-assets']);
 
         Route::group($this->routeConfiguration(), function () {
-            $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+            $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
         });
     }
 
@@ -40,10 +40,10 @@ class DependentFilterServiceProvider extends ServiceProvider
     protected function routeConfiguration()
     {
         return [
-            'namespace' => 'AwesomeNova\Http\Controllers',
-            'domain' => config('nova.domain', null),
-            'as' => 'nova.api.',
-            'prefix' => 'nova-api',
+            'namespace'  => 'AwesomeNova\Http\Controllers',
+            'domain'     => config('nova.domain', null),
+            'as'         => 'nova.api.',
+            'prefix'     => 'nova-api',
             'middleware' => 'nova',
         ];
     }
