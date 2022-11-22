@@ -17,9 +17,15 @@ class DependentFilterServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Event::listen(ServingNova::class, function () {
-            Nova::script('awesome-nova-dependent-filter', dirname(__DIR__) . '/dist/js/filter.js');
+        Nova::serving(function (ServingNova $event) {
+            array_unshift(
+                Nova::$scripts, Script::remote(mix('filter.js', 'vendor/jeffersonsimaogoncalves/dependent-filter'))
+            );
         });
+
+        $this->publishes([
+            __DIR__.'/../dist' => public_path('vendor/jeffersonsimaogoncalves/dependent-filter'),
+        ], ['nova-assets', 'laravel-assets']);
 
         Route::group($this->routeConfiguration(), function () {
             $this->loadRoutesFrom(__DIR__.'/../routes/api.php');

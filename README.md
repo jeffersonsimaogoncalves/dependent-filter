@@ -21,7 +21,7 @@ This package provides filters what depends of another filters.
 You can install the package in to a Laravel app that uses [Nova](https://nova.laravel.com) via composer:
 
 ```sh
-composer require awesome-nova/dependent-filter
+composer require jeffersonsimaogoncalves/dependent-filter
 ```
 
 ## Usage
@@ -258,3 +258,5 @@ Also you can specify another filter key over method `key`.
 ## Thanks
 
 Thanks to [Brian](https://github.com/dillingham) for his support and advices. 
+
+[https://github.com/awesome-nova/dependent-filter/](https://github.com/awesome-nova/dependent-filter/)
